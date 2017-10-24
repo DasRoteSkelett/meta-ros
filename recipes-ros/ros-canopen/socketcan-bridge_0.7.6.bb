@@ -5,7 +5,4 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9de
 
 DEPENDS = "socketcan-interface can-msgs roscpp"
 
-
 require ros-canopen.inc
-
-ROS_SP="socketcan_bridge"

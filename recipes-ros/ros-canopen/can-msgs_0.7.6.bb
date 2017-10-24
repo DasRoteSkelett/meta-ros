@@ -8,5 +8,3 @@ DEPENDS = "std-msgs genmsg message-generation"
 RDEPENDS_${PN} = "std-msgs message-runtime"
 
 require ros-canopen.inc
-
-ROS_SP="can_msgs"

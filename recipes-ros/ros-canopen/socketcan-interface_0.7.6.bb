@@ -5,7 +5,4 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=b691248d2f70c
 
 DEPENDS = "boost class-loader virtual/kernel"
 
-
 require ros-canopen.inc
-
-ROS_SP="socketcan_interface"
