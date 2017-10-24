@@ -5,13 +5,13 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=7fbc338309ac38fefcd64b04bb903e34"
 
 DEPENDS = "cppunit boost"
 
-SRC_URI = "https://github.com/ros-gbp/${PN}-release/archive/release/indigo/${PN}/${PV}.tar.gz"
-SRC_URI[md5sum] = "8140555e28ddea22a10a9ec59d96a4a0"
-SRC_URI[sha256sum] = "296bec7f11430dd99a9617333d91c5c94ccf96ef6a4aa242917cc19480169740"
+SRC_URI = "https://github.com/ros-gbp/${PN}-release/archive/release/kinetic/${PN}/${PV}.tar.gz"
+SRC_URI[md5sum] = "e00f4ae5e62aab3925ea8092a06564eb"
+SRC_URI[sha256sum] = "54d9c8ae3cd477fa0a413e2100233e5f450760df4ad7dd8f63723889d913cea6"
 
 SRC_URI += "file://0001-drop-pathes-to-unused-libraries-for-passing-the-qa_s.patch"
 
-S = "${WORKDIR}/bfl-release-release-indigo-${P}"
+S = "${WORKDIR}/bfl-release-release-kinetic-${P}"
 
 inherit cmake faulty-solibs
 
