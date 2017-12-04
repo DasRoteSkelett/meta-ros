@@ -1,0 +1,44 @@
+diff --git a/core/roslib/env-hooks/10.ros.bat.em b/core/roslib/env-hooks/10.ros.bat.em
+index 62b818cf..01950dfd 100644
+--- a/core/roslib/env-hooks/10.ros.bat.em
++++ b/core/roslib/env-hooks/10.ros.bat.em
+@@ -1,7 +1,7 @@
+ REM generated from ros/env-hooks/10.ros.bat.em
+ 
+ REM scrub old ROS bin dirs, to avoid accidentally finding the wrong executables
+-set _COMMAND=@(PYTHON_EXECUTABLE) -c "import os; print(os.pathsep.join([x for x in r'%PATH%'.split(os.pathsep) if not any([d for d in ['cturtle', 'diamondback', 'electric', 'fuerte'] if d in x])]))"
++set _COMMAND=/usr/bin/env python -c "import os; print(os.pathsep.join([x for x in r'%PATH%'.split(os.pathsep) if not any([d for d in ['cturtle', 'diamondback', 'electric', 'fuerte'] if d in x])]))"
+ rem Need the delims= line here to ensure that it reads with eol delimiters, not space.
+ for /f "delims=" %%i in ('%COMMAND%') do set PATH=%%i
+ 
+@@ -23,7 +23,7 @@ endlocal
+ setlocal EnableDelayedExpansion
+ 
+ set ROS_PACKAGE_PATH_PARENTS=
+-for /f %%a in ('@(PYTHON_EXECUTABLE) _parent_package_path.py') do set ROS_PACKAGE_PATH_PARENTS=!ROS_PACKAGE_PATH_PARENTS!%%a
++for /f %%a in ('/usr/bin/env python _parent_package_path.py') do set ROS_PACKAGE_PATH_PARENTS=!ROS_PACKAGE_PATH_PARENTS!%%a
+ 
+ @[if DEVELSPACE]@
+ REM env variables in develspace
+diff --git a/core/roslib/env-hooks/10.ros.sh.em b/core/roslib/env-hooks/10.ros.sh.em
+index 04cda443..08979db0 100644
+--- a/core/roslib/env-hooks/10.ros.sh.em
++++ b/core/roslib/env-hooks/10.ros.sh.em
+@@ -1,7 +1,7 @@
+ # generated from ros/env-hooks/10.ros.sh.em
+ 
+ # scrub old ROS bin dirs, to avoid accidentally finding the wrong executables
+-export PATH="`@(PYTHON_EXECUTABLE) -c \"import os; print(os.pathsep.join([x for x in \\\"$PATH\\\".split(os.pathsep) if not any([d for d in ['cturtle', 'diamondback', 'electric', 'fuerte'] if d in x])]))\"`"
++export PATH="`/usr/bin/env python -c \"import os; print(os.pathsep.join([x for x in \\\"$PATH\\\".split(os.pathsep) if not any([d for d in ['cturtle', 'diamondback', 'electric', 'fuerte'] if d in x])]))\"`"
+ 
+ @{
+ # This is a build-time environment variable which allows a build engineer to override the expected
+@@ -38,7 +38,7 @@ for workspace in workspaces:
+ print(os.pathsep.join(paths))
+ EOF
+ )
+-export ROS_PACKAGE_PATH="`@(PYTHON_EXECUTABLE) -c \"$PYTHON_CODE_BUILD_ROS_PACKAGE_PATH\"`"
++export ROS_PACKAGE_PATH="`/usr/bin/env python -c \"$PYTHON_CODE_BUILD_ROS_PACKAGE_PATH\"`"
+ 
+ @[if DEVELSPACE]@
+ # env variables in develspace
