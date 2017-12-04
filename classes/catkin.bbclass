@@ -28,6 +28,7 @@ EXTRA_OECMAKE_prepend = "\
 
 OECMAKE_SOURCEPATH = "${S}"
 OECMAKE_BUILDPATH = "${S}/build"
+B = "${S}/build"
 
 # Having a command like `find_package(catkin COMPONENTS roscpp)` in a package's CMakeLists.txt
 # leads to adding "-Wl,-rpath=${RECIPE_SYSROOT}${ros_libdir}" option to the cross-linker.
