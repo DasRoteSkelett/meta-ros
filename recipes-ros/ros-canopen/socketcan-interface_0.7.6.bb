@@ -6,3 +6,5 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=b691248d2f70c
 DEPENDS = "boost class-loader virtual/kernel"
 
 require ros-canopen.inc
+
+SRC_URI += "file://0001-explicitly-include-iostream-to-compile-with-boost-1..patch;striplevel=2"

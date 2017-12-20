@@ -184,7 +184,7 @@ class yoctoRecipe:
                     "_" + self.version + ".bb", "w")
 
         file.write('DESCRIPTION = \"' + self.description.rstrip() + "\"\n")
-        file.write('AUTHOR = \"' + self.author + '\"\n')
+        file.write('AUTHOR = \"' + self.author.encode('utf-8') + '\"\n')
         file.write('SECTION = \"devel\"\n')
         file.write('LICENSE = \"' + self.license + "\"\n")
         file.write('LIC_FILES_CHKSUM = file://package.xml;beginline=' +
