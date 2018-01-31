@@ -7,4 +7,5 @@ DEPENDS = "boost class-loader virtual/kernel"
 
 require ros-canopen.inc
 
-SRC_URI += "file://0001-explicitly-include-iostream-to-compile-with-boost-1..patch;striplevel=2"
+SRC_URI += "file://0001-explicitly-include-iostream-to-compile-with-boost-1..patch;striplevel=2 \
+	file://0001-Removing-CAN_ERR_LOSTARB-from-the-list-of-errors.-Re.patch;striplevel=2"
