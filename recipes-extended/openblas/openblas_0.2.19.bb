@@ -21,7 +21,7 @@ S = "${WORKDIR}/OpenBLAS-${PV}"
 def map_arch(a, d):
         import re
         if re.match('i.86$', a): return 'ATOM'
-        elif re.match('x86_64$', a): return 'ATOM'
+        elif re.match('x86_64$', a): return 'HASWELL'
         elif re.match('aarch32$', a): return 'CORTEXA9'
         elif re.match('aarch64$', a): return 'ARMV8'
         return a
@@ -35,7 +35,7 @@ def map_bits(a, d):
         return 32
 
 do_compile () {
-        oe_runmake HOSTCC="${BUILD_CC}"                                         \
+        oe_runmake HOSTCC="${BUILD_CC}" MAKE_NB_JOBS="1"   \
                                 CC="${TARGET_PREFIX}gcc ${TOOLCHAIN_OPTIONS}" \
                                 BINARY='${@map_bits(d.getVar('TARGET_ARCH', True), d)}' \
                                 TARGET='${@map_arch(d.getVar('TARGET_ARCH', True), d)}'
