@@ -7,7 +7,7 @@ SECTION = "libs"
 LICENSE = "BSD"
 PR = "r0"
 
-DEPENDS = "make"
+DEPENDS = "make libgfortran "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=5adf4792c949a00013ce25d476a2abc0"
 
@@ -16,6 +16,7 @@ SRC_URI[md5sum] = "28c998054fd377279741c6f0b9ea7941"
 SRC_URI[sha256sum] = "9c40b5e4970f27c5f6911cb0a28aa26b6c83f17418b69f8e5a116bb983ca8557"
 
 S = "${WORKDIR}/OpenBLAS-${PV}"
+
 
 def map_arch(a, d):
         import re
@@ -36,14 +37,14 @@ def map_bits(a, d):
 do_compile () {
         oe_runmake HOSTCC="${BUILD_CC}"                                         \
                                 CC="${TARGET_PREFIX}gcc ${TOOLCHAIN_OPTIONS}" \
-                                ONLY_CBLAS=1 BINARY='${@map_bits(d.getVar('TARGET_ARCH', True), d)}' \
+                                BINARY='${@map_bits(d.getVar('TARGET_ARCH', True), d)}' \
                                 TARGET='${@map_arch(d.getVar('TARGET_ARCH', True), d)}'
 }
 
 do_install() {
         oe_runmake HOSTCC="${BUILD_CC}"                                         \
                                 CC="${TARGET_PREFIX}gcc ${TOOLCHAIN_OPTIONS}" \
-                                ONLY_CBLAS=1 BINARY='${@map_bits(d.getVar('TARGET_ARCH', True), d)}' \
+                                BINARY='${@map_bits(d.getVar('TARGET_ARCH', True), d)}' \
                                 TARGET='${@map_arch(d.getVar('TARGET_ARCH', True), d)}' \
                                 PREFIX=${D}/usr install
 }
