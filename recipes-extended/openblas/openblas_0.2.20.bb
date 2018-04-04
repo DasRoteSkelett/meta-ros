@@ -32,7 +32,7 @@ def map_bits(a, d):
         return 32
 
 do_compile () {
-        oe_runmake HOSTCC="${BUILD_CC}"                                         \
+        oe_runmake HOSTCC="${BUILD_CC}" CROSS=1                                        \
                                 CC="${TARGET_PREFIX}gcc ${TOOLCHAIN_OPTIONS}" \
                                 PREFIX=${exec_prefix} \
                                 CROSS_SUFFIX=${HOST_PREFIX} \
@@ -41,7 +41,7 @@ do_compile () {
 }
 
 do_install() {
-        oe_runmake HOSTCC="${BUILD_CC}"                                         \
+        oe_runmake HOSTCC="${BUILD_CC}"  CROSS=1                                       \
                                 CC="${TARGET_PREFIX}gcc ${TOOLCHAIN_OPTIONS}" \
                                 PREFIX=${exec_prefix} \
                                 CROSS_SUFFIX=${HOST_PREFIX} \
