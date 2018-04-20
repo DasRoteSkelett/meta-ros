@@ -8,4 +8,6 @@ RDEPENDS_${PN} = "${PYTHON_PN}-xmlrpc ${PYTHON_PN}-threading ${PYTHON_PN}-rospkg
 
 require ros-comm.inc
 
+SRC_URI += " file://0001-rosgraph_no_stderr.patch "
+
 ROS_PKG_SUBDIR = "tools"

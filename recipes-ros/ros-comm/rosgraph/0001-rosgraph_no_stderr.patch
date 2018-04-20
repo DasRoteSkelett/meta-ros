@@ -1,0 +1,16 @@
+diff --git a/src/rosgraph/roslogging.py b/src/rosgraph/roslogging.py
+index 20c4cb7..bec2791 100644
+--- a/src/rosgraph/roslogging.py
++++ b/src/rosgraph/roslogging.py
+@@ -201,10 +201,7 @@ class RosStreamHandler(logging.Handler):
+             time_str += ', %f' % self._get_time()
+         msg = msg.replace('${time}', time_str)
+         msg += '\n'
+-        if record.levelno < logging.WARNING:
+-            self._write(sys.stdout, msg, color)
+-        else:
+-            self._write(sys.stderr, msg, color)
++        self._write(sys.stdout, msg, color)
+ 
+     def _write(self, fd, msg, color):
+         if self._colorize and color and hasattr(fd, 'isatty') and fd.isatty():
