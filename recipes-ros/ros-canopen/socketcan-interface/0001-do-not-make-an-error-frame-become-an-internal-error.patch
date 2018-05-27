@@ -1,0 +1,42 @@
+From 2c98fabd51b520d136150121a0eeebfe8d5419a7 Mon Sep 17 00:00:00 2001
+From: Matthias Schoepfer <matthias.schoepfer@identpro.de>
+Date: Sun, 27 May 2018 14:37:46 +0200
+Subject: [PATCH] do not make an error frame become an internal error
+
+---
+ socketcan_interface/include/socketcan_interface/socketcan.h | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/socketcan_interface/include/socketcan_interface/socketcan.h b/socketcan_interface/include/socketcan_interface/socketcan.h
+index 92b5ab0..a37fc7d 100644
+--- a/socketcan_interface/include/socketcan_interface/socketcan.h
++++ b/socketcan_interface/include/socketcan_interface/socketcan.h
+@@ -180,9 +180,9 @@ protected:
+         boost::system::error_code ec;
+         boost::asio::write(socket_, boost::asio::buffer(&frame, sizeof(frame)),boost::asio::transfer_all(), ec);
+         if(ec){
+-            LOG("FAILED " << ec);
+-            setErrorCode(ec);
+-            setNotReady();
++            LOG("socketcan_interface: write FAILED " << ec);
++            //setErrorCode(ec);
++            //setNotReady();
+             return false;
+         }
+         
+@@ -200,9 +200,9 @@ protected:
+                 input_.id = frame_.can_id & CAN_EFF_MASK;
+                 input_.is_error = 1;
+ 
+-                LOG("error: " << input_.id);
+-                setInternalError(input_.id);
+-                setNotReady();
++                LOG("socketcan_interface: readFrame error: " << input_.id);
++                //setInternalError(input_.id);
++                //setNotReady();
+ 
+             }else{
+                 input_.is_extended = (frame_.can_id & CAN_EFF_FLAG) ? 1 :0;
+-- 
+2.16.1
+
