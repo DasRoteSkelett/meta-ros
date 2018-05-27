@@ -38,8 +38,8 @@ do_install_append() {
     install -m 0644 ${WORKDIR}/roscore-default ${D}/${sysconfdir}/default/roscore
 
     # Install systemd unit file
-    install -d ${D}${systemd_unitdir}/system/
-    install -m 0644 ${WORKDIR}/roscore.service ${D}${systemd_unitdir}/system/roscore.service
+    install -d ${D}${systemd_system_unitdir}
+    install -m 0644 ${WORKDIR}/roscore.service ${D}${systemd_system_unitdir}/roscore.service
 }
 
 FILES_${PN}-systemd += "${sysconfdir}/default/roscore \
@@ -51,5 +51,6 @@ CONFFILES_${PN}-systemd += "${sysconfdir}/default/roscore \
 inherit systemd
 PACKAGES += "${PN}-systemd"
 SYSTEMD_PACKAGES = "${PN}-systemd"
-SYSTEMD_SERVICE = "roscore.service \
+SYSTEMD_SERVICE_${PN}-systemd = "\
+    roscore.service \
 "
